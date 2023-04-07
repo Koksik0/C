@@ -1,41 +1,43 @@
-#include<stdio.h>
+#include <stdio.h>
 #include <math.h>
-void pierwiastki(float a, float b, float c)
+void zad1(int n)
 {
-    float delta = (b*b) - 4*a*c;
-    if(delta<0)
+    int i, a;
+    int x = 1;
+    float w = 0.0;
+    float wariancja = 0.0;
+    float odchylenie = 0.0;
+    int tab[n];
+    printf("Podaj liczby:\n");
+    for( i = 0; i < n; i++ )
     {
-        printf("Poniewaz delta jest mniejsza od 0, to rowananie nie ma miejsc zerowych\n");
+        printf("%d",x);
+        printf(". ");
+        scanf("%i",&tab[i]);
+        x++;
     }
-    else if (delta==0)
-    {
-        float pierwiastek = (-b)/(2*a);
-        printf("Rownanie ma jeden pierwiastek, jest nim: \n");
-        printf("%f", pierwiastek);
+    for( i = 0; i < n; i++ )
+    {   
+        w += tab[i];
     }
-    else
-    {
-        printf("Rownanie ma dwa pierwiaski, sa nimi: \n X1: \n");
-        printf("%f",(-b - sqrt(delta))/(2*a));
-        printf("\nX2: \n");
-        printf("%f",(-b + sqrt(delta))/(2*a));
-    }
-}
+    w/=n;
+    printf("Srednia arytmetyczna wynosi: ");
+    printf("%f", w);
+    printf("\n");
+     for( i = 0; i < n; i++ )
+     {
+         wariancja += (tab[i]-w)*(tab[i]-w);
+     }
+     wariancja /=n;
+     odchylenie = sqrt(wariancja);
+     printf("Odchylenie standardowe wynosi: ");
+     printf("%f",odchylenie);
+       
+} 
 int main()
-{
-    float a,b,c;
-    int cyferka = 1;
-    do
-    {
-        printf("Podaj wspolczynnik stojacy przy x^2(pamietaj ze nie moze byc zerem)\n");
-        scanf("%f",&a);
-        printf("Podaj wspolczynnik stojacy przy x\n");
-        scanf("%f",&b);
-        printf("Podaj wyraz wolny\n");
-        scanf("%f",&c);
-        pierwiastki(a,b,c);
-        printf("\nJesli chcesz ponowanie obliczyc pierwiastki rownania kwadratowrgo to wpisz 1, w przyciwnym wypadku wpisz inna cyfre\n");
-        scanf("%d",&cyferka);
-    }
-    while(cyferka == 1);
+{   
+    int n;
+    printf("Podaj z ilu liczb chcesz policzyc srednia arytmetyczna i odchylenie standardowe: \n");
+    scanf("%d", &n);
+    zad1(n);
 }
